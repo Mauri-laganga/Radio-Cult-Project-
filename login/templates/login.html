@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="email" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Login</button>
+            <a href="{{ url_for('register') }}" class="link">No tienes una cuenta? Registrate!</a>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var flashMessages = document.getElementsByClassName("flash-message");
+            for (var i = 0; i < flashMessages.length; i++) {
+                var message = flashMessages[i].textContent;
+                var messageType = flashMessages[i].getAttribute("data-type");
+                alert(message); 
+
+                // Crear un contenedor para el mensaje emergente
+        var popup = document.createElement("div");
+        popup.className = "flash-container";
+
+        // Establecer estilos CSS en línea para los mensajes
+        popup.style.backgroundColor = messageType === 'success' ? '#4CAF50' : '#f44336';
+        popup.style.color = '#fff';
+        popup.style.padding = '10px';
+        popup.style.borderRadius = '5px';
+        popup.style.marginBottom = '10px';
+        popup.style.textAlign = 'center';
+
+        // Agregar el mensaje al contenedor
+        popup.textContent = message;
+
+        // Agregar un botón de cierre
+        var closeButton = document.createElement("span");
+        closeButton.textContent = "x";
+        closeButton.className = "flash-close";
+        closeButton.addEventListener("click", function() {
+            this.parentElement.remove();
+        });
+        popup.appendChild(closeButton);
+
+        // Agregar el contenedor al cuerpo del documento
+        document.body.appendChild(popup);
+            }
+        });
+    </script>
+
+</body>
+</html>
